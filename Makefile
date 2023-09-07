@@ -1,7 +1,3 @@
-.PHONY:env
-env:
-	python -m venv venv
-
 .PHONY:install
 install:
 	poetry install
@@ -25,6 +21,11 @@ superuser:
 .PHONY: install-pre-commit
 install-pre-commit:
 	poetry run pre-commit uninstall; poetry run pre-commit install
+
+.PHONY: up-dependencies-only
+up-dependencies-only:
+	test -f .env || touch .env
+	docker-compose -f docker-compose.dev.yaml up --force-recreate db
 
 .PHONY:update
 update: install migrate install-pre-commit ;
