@@ -11,7 +11,7 @@ migrations:
 	poetry run python -m core.manage makemigrations
 
 .PHONY:run
-run-server:
+run:
 	poetry run python -m core.manage runserver
 
 .PHONY:superuser
